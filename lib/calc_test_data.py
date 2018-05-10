@@ -7,8 +7,8 @@ from utils import handle_words as hw
 def calc_test_data():
     model_path = cfg.model_output_path
     print('loading model from {}'.format(model_path))
-    model = Word2Vec.load(model_path)
-    vocab = list(model.wv.vocab.keys())
+    model = Word2Vec.load(model_path)#加载模型
+    vocab = list(model.wv.vocab.keys())#获得语料字典
     test_data_path = cfg.test_df_path
     print('loading test data from {}'.format(test_data_path))        
     test = pd.read_csv(test_data_path,encoding='gbk')
@@ -22,7 +22,7 @@ def calc_test_data():
     for i in range(test.shape[0]):
         raw = test['title'][i]
         l1 = hw.jieba_fenci(raw,stopwords_list)
-        l1 = hw.clear_list(l1,vocab)
+        l1 = hw.clear_list(l1,vocab)#清洗列表，确保列表里的词都在字典里
         test_words.append(l1)
 
     anss = np.zeros((50,485686))
@@ -49,7 +49,7 @@ def calc_test_data():
     #     test['top20'][i] = str(top)
     for i in range(50):
         ans = anss[i,:]
-        top = heapq.nlargest(20,range(len(ans)),ans.__getitem__)
+        top = heapq.nlargest(20,range(len(ans)),ans.__getitem__)#获得相似度排名前20的标题的索引
         an['top20'][i] = top
         
-        test.to_csv(cfg.top20_path,mode='a')
+        test.to_csv(cfg.top20_path,mode='a')#保存结果
