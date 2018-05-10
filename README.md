@@ -9,7 +9,7 @@
 
 ## TODO
 
-- calculate the sentence-meaning vector for each news instead of calculate the similarity for each tow of them to cut down the calculated quantity.
+- calculate the sentence-meaning vector for each news to cut down the calculated quantity.
 - cluster the news to implement TFIDF on each news to find out the key words.
 ## demo 
 - cmd python get_top20.py
