@@ -1,4 +1,4 @@
-# Get 50 news from test data,find each of them the most similar 50 news in train data.
+# Get 50 chinese news from test data,find each of them the most similar 50 news in train data.
 
 ## enviroment
 - win 10
